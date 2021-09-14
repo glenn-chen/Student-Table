@@ -7,7 +7,27 @@
 <body>
 
 <div class="tableContainer">
-    <button id="addButton">Add Student</button>
+    <fieldset>
+        <legend>Name</legend>
+        <input id="nameForm" value="" />
+    </fieldset>
+    <fieldset>
+        <legend>Email</legend>
+        <input id="emailForm" value="" />
+    </fieldset>
+    <form>
+        <label>
+          Level
+          <select id="levelForm" value=Freshman>
+            <option value="Freshman">Freshman</option>
+            <option value="Sophomore">Sophomore</option>
+            <option value="Junior">Junior</option>
+            <option value="Senior">Senior</option>
+          </select>
+        </label>
+      </form>
+
+    <button id="addButton" type="button" onclick="addRow()">Add Student</button>
     <table id="studentTable">
         <tr>
             <td>Name</td>
