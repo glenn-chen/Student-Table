@@ -7,6 +7,31 @@ function addRow() {
     var emailWarning = document.getElementById("emailWarning");
     nameWarning.hidden = true;
     emailWarning.hidden = true; 
+    if (!validateInputs(nameForm, emailForm))
+        return;
+
+    var row = studentTable.insertRow(-1);
+    var nameCell = row.insertCell(0);
+    nameCell.innerHTML = nameForm.value;
+    nameForm.value = ""; //clear form
+
+    var emailCell = row.insertCell(1);
+    emailCell.innerHTML = emailForm.value;
+    emailForm.value = ""; //clear form
+    
+    var levelCell = row.insertCell(2);
+    levelCell.innerHTML = levelForm.value;
+
+    var deleteButtonCell = row.insertCell(3);
+    deleteButtonCell.innerHTML = "<input type='button' value='Delete' onclick='deleteRow(this)' />";
+}
+
+function deleteRow(button) {
+    var row = button.parentNode.parentNode;
+    row.parentNode.removeChild(row);
+}
+
+function validateInputs(nameForm, emailForm) {
     if (!validateName(nameForm.value) || !validateEmail(emailForm.value)) {
         if (!validateName(nameForm.value)) {
             nameWarning.hidden = false;
@@ -14,25 +39,13 @@ function addRow() {
         if (!validateEmail(emailForm.value)) {
             emailWarning.hidden = false;
         }
-
-        return;
+        return false;
     }
-
-    var row = studentTable.insertRow(-1);
-    var name = row.insertCell(0);
-    name.innerHTML = nameForm.value;
-    nameForm.value = ""; //clear form
-
-    var email = row.insertCell(1);
-    email.innerHTML = emailForm.value;
-    emailForm.value = ""; //clear form
-    
-    var level = row.insertCell(2);
-    level.innerHTML = levelForm.value;
+    return true;
 }
 
 function validateName(name) {
-    var regex = /^[a-z ,.'-]+$/;
+    var regex = /^[A-Za-z ,.'-]+$/;
     return regex.test(name);
 }
 
