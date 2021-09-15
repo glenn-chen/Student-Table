@@ -7,7 +7,7 @@ function addRow() {
     var emailWarning = document.getElementById("emailWarning");
     nameWarning.hidden = true;
     emailWarning.hidden = true; 
-    if (!validateInputs(nameForm, emailForm))
+    if (!validateNewStudent(nameForm, emailForm))
         return;
 
     var row = studentTable.insertRow(-1);
@@ -26,6 +26,10 @@ function addRow() {
     levelCell.innerHTML = levelForm.value;
     row.level = levelForm.value;
 
+    row.tempname = row.name;
+    row.tempemail = row.email;
+    row.templevel = row.level;
+
     var editButtonCell = row.insertCell(3);
     editButtonCell.innerHTML = "<input type='button' value='Edit' onclick='editRow(this)' />";
 
@@ -40,9 +44,6 @@ function deleteRow(button) {
 
 function editRow(button) {
     var row = button.parentNode.parentNode;
-    row.tempname = row.name;
-    row.tempemail = row.email;
-    row.templevel = row.level;
     // Name
     row.cells[0].innerHTML = "<fieldset><input value='"+row.name+"' onchange='onNameChange(this)' required></fieldset>";
     // Email
@@ -66,8 +67,8 @@ function editRow(button) {
 }
 function onNameChange(input) {
     var row = input.parentNode.parentNode.parentNode;
+    row.tempname = input.value;
     if (validateName(input.value)) {
-        row.tempname = input.value;
         input.setCustomValidity('');
     }
     else {
@@ -77,9 +78,7 @@ function onNameChange(input) {
 
 function onEmailChange(input) {
     var row = input.parentNode.parentNode.parentNode;
-    if (validateEmail(input.value)) {
-        row.tempemail = input.value;
-    }
+    row.tempemail = input.value;
 }
 
 function onLevelChange(select) {
@@ -89,12 +88,15 @@ function onLevelChange(select) {
 
 function saveRow(button) {
     var row = button.parentNode.parentNode;
+    if (!validateName(row.tempname) || !validateEmail(row.tempemail)) {
+        return;
+    }
     row.name = row.tempname;
     row.email = row.tempemail;
     row.level = row.templevel;
     row.cells[0].innerHTML = row.name;
     row.cells[1].innerHTML = row.email;
-    row.cells[2].innerHTML = row.level;//document.getElementById("levelForm-" + row.id).value;
+    row.cells[2].innerHTML = row.level;
     // Edit Button
     row.cells[3].innerHTML = "<input type='button' value='Edit' onclick='editRow(this)' />";
     row.cells[4].innerHTML = "<input type='button' value='Delete' onclick='deleteRow(this)' />";
@@ -110,7 +112,7 @@ function cancelEdit(button) {
     row.cells[4].innerHTML = "<input type='button' value='Delete' onclick='deleteRow(this)' />";
 }
 
-function validateInputs(nameForm, emailForm) {
+function validateNewStudent(nameForm, emailForm) {
     if (!validateName(nameForm.value) || !validateEmail(emailForm.value)) {
         if (!validateName(nameForm.value)) {
             nameWarning.hidden = false;
