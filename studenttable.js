@@ -40,6 +40,9 @@ function deleteRow(button) {
 
 function editRow(button) {
     var row = button.parentNode.parentNode;
+    row.tempname = row.name;
+    row.tempemail = row.email;
+    row.templevel = row.level;
     // Name
     row.cells[0].innerHTML = "<fieldset><input value='"+row.name+"' onchange='onNameChange(this)' required></fieldset>";
     // Email
