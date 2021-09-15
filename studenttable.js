@@ -124,12 +124,13 @@ function validateNewStudent(nameForm, emailForm) {
 }
 
 function validateName(name) {
-    var regex = /^[A-Za-z ,.'-]+$/;
+    var regex = /^[A-Za-z\u00C0-\u00FF][A-Za-z\u00C0-\u00FF ,.'-]*$/;
     return regex.test(name);
 }
 
 function validateEmail(email) {
     // email regex taken from http://www.tutorialspark.com/javascript/JavaScript_Regular_Expression_Form_Validation.php
+    // this regex is stricter than the html form regex (this doesn't allow only one character after .)
     var regex = /^(([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5}){1,25})+([;.](([a-zA-Z0-9_\-\.]+)@{[a-zA-Z0-9_\-\.]+0\.([a-zA-Z]{2,5}){1,25})+)*$/;
     return regex.test(email);
 }
