@@ -5,14 +5,14 @@
 </head>
 
 <body>
-<div class="addStudentFormContainer">
-  <div class="warning" id="nameWarning" hidden onclick="this.hidden='true'">
-    <strong>Enter a valid name!</strong> Click to close warning
-  </div>
-  <div class="warning" id="emailWarning" hidden onclick="this.hidden='true'">
-    <strong>Enter a valid email address!</strong> Click to close warning
-  </div>
+<div class="warning" id="nameWarning" hidden onclick="this.hidden='true'">
+  <strong>Enter a valid name!</strong> Failed to add student. Click to close warning
+</div>
+<div class="warning" id="emailWarning" hidden onclick="this.hidden='true'">
+  <strong>Enter a valid email address!</strong> Failed to add student. Click to close warning
+</div>
 
+<div class="addStudentFormContainer">
   <fieldset>
       <legend>Name</legend>
       <input id="nameForm" value="">
@@ -35,6 +35,7 @@
 
   <button id="addButton" type="button" onclick="addRow()">Add Student</button>
 </div>
+
 <div class="tableContainer">
     <table id="studentTable">
         <tr>
@@ -44,7 +45,7 @@
         </tr>
     </table>
 </div>
-<script src="studenttable.js"></script>
 
+<script src="studenttable.js"></script>
 </body>
 </html>
