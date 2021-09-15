@@ -24,4 +24,11 @@ input {
 
 input:invalid {
     background-color: #ffdddd;
-  }
+}
+
+.warning {
+    background-color: #ff4f3e;
+    padding: 15px 20px;
+    margin-bottom: 5px;
+    color: white;
+}
