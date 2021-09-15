@@ -19,7 +19,7 @@ fieldset {
 }
 
 input {
-    max-width: 200px;
+    width: 100%
 }
 
 input:invalid {
@@ -31,4 +31,55 @@ input:invalid {
     padding: 15px 20px;
     margin-bottom: 5px;
     color: white;
+}
+
+.addStudentFormContainer {
+    width: 400px;
+    max-width: 75%;
+    margin: auto;
+    padding: 20px;
+}
+
+.addStudentFormContainer input {
+    margin: 2px 0 4px 0;
+}
+
+.addStudentFormContainer button {
+    margin: 7px 0 0 0;
+    padding: 5px;
+    color: rgb(238, 238, 238);
+    background-color: black;
+    border: 2px solid black;
+    border-radius: 3px;
+}
+.addStudentFormContainer form {
+    margin: 5px 0 0 0;
+}
+
+.deleteButton {
+    color: white;
+    background-color: #ff4f3e;
+    border: 2px solid #ff4f3e;
+    border-radius: 3px;
+}
+
+.saveButton {
+    color: white;
+    background-color: #3fb92e;
+    border: 2px solid #3fb92e;
+    border-radius: 3px;
+}
+
+.editButton {
+    color: white;
+    background-color: #ffc400;
+    border: 2px solid #ffc400;
+    border-radius: 3px;
+}
+
+.cancelButton {
+    color: black;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 3px;
 }

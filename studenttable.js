@@ -31,10 +31,10 @@ function addRow() {
     row.templevel = row.level;
 
     var editButtonCell = row.insertCell(3);
-    editButtonCell.innerHTML = "<input type='button' value='Edit' onclick='editRow(this)' />";
+    editButtonCell.innerHTML = "<input class='editButton' type='button' value='Edit' onclick='editRow(this)' />";
 
     var deleteButtonCell = row.insertCell(4);
-    deleteButtonCell.innerHTML = "<input type='button' value='Delete' onclick='deleteRow(this)' />";
+    deleteButtonCell.innerHTML = "<input class='deleteButton' type='button' value='Delete' onclick='deleteRow(this)' />";
 }
 
 function deleteRow(button) {
@@ -60,10 +60,10 @@ function editRow(button) {
         + " value='Senior'>Senior</option>"
       + "</select>";
     // Edit Button Column
-    row.cells[3].innerHTML = "<input type='button' value='Save' onclick='saveRow(this)' />";
+    row.cells[3].innerHTML = "<input class='saveButton' type='button' value='Save' onclick='saveRow(this)' />";
 
     // Change delete button to cancel button
-    row.cells[4].innerHTML = "<input type='button' value='Cancel' onclick='cancelEdit(this)' />";
+    row.cells[4].innerHTML = "<input class='cancelButton' type='button' value='Cancel' onclick='cancelEdit(this)' />";
 }
 function onNameChange(input) {
     var row = input.parentNode.parentNode.parentNode;
@@ -98,8 +98,8 @@ function saveRow(button) {
     row.cells[1].innerHTML = row.email;
     row.cells[2].innerHTML = row.level;
     // Edit Button
-    row.cells[3].innerHTML = "<input type='button' value='Edit' onclick='editRow(this)' />";
-    row.cells[4].innerHTML = "<input type='button' value='Delete' onclick='deleteRow(this)' />";
+    row.cells[3].innerHTML = "<input class='editButton' type='button' value='Edit' onclick='editRow(this)' />";
+    row.cells[4].innerHTML = "<input class='deleteButton' type='button' value='Delete' onclick='deleteRow(this)' />";
     
 }
 
@@ -108,8 +108,8 @@ function cancelEdit(button) {
     row.cells[0].innerHTML = row.name;
     row.cells[1].innerHTML = row.email;
     row.cells[2].innerHTML = row.level;
-    row.cells[3].innerHTML = "<input type='button' value='Edit' onclick='editRow(this)' />";
-    row.cells[4].innerHTML = "<input type='button' value='Delete' onclick='deleteRow(this)' />";
+    row.cells[3].innerHTML = "<input class='editButton' type='button' value='Edit' onclick='editRow(this)' />";
+    row.cells[4].innerHTML = "<input class='deleteButton' type='button' value='Delete' onclick='deleteRow(this)' />";
 }
 
 function validateNewStudent(nameForm, emailForm) {

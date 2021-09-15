@@ -5,48 +5,51 @@
 </head>
 
 <body>
+<div class="addStudentFormContainer">
+  <div class="warning" id="nameWarning" hidden onclick="this.hidden='true'">
+    <strong>Enter a valid name!</strong> Click to close warning
+  </div>
+  <div class="warning" id="emailWarning" hidden onclick="this.hidden='true'">
+    <strong>Enter a valid email address!</strong> Click to close warning
+  </div>
 
+  <fieldset>
+      <legend>Name</legend>
+      <input id="nameForm" value="">
+  </fieldset>
+  <fieldset>
+      <legend>Email</legend>
+      <input id="emailForm" value="">
+  </fieldset>
+  <form>
+    <label>
+      Level
+      <select id="levelForm" value=Freshman>
+        <option value="Freshman">Freshman</option>
+        <option value="Sophomore">Sophomore</option>
+        <option value="Junior">Junior</option>
+        <option value="Senior">Senior</option>
+      </select>
+    </label>
+  </form>
+
+  <button id="addButton" type="button" onclick="addRow()">Add Student</button>
+</div>
 <div class="tableContainer">
-    <div class="warning" id="nameWarning" hidden onclick="this.hidden='true'">
-      <strong>Enter a valid name!</strong> Click to close warning
-    </div>
-    <div class="warning" id="emailWarning" hidden onclick="this.hidden='true'">
-      <strong>Enter a valid email address!</strong> Click to close warning
-    </div>
-    <fieldset>
-        <legend>Name</legend>
-        <input id="nameForm" value="">
-    </fieldset>
-    <fieldset>
-        <legend>Email</legend>
-        <input id="emailForm" value="">
-    </fieldset>
-    <form>
-        <label>
-          Level
-          <select id="levelForm" value=Freshman>
-            <option value="Freshman">Freshman</option>
-            <option value="Sophomore">Sophomore</option>
-            <option value="Junior">Junior</option>
-            <option value="Senior">Senior</option>
-          </select>
-        </label>
-      </form>
-
-    <button id="addButton" type="button" onclick="addRow()">Add Student</button>
     <table id="studentTable">
         <tr>
             <th>Name</th>
             <th>Email</th>
             <th>Level</th>
         </tr>
+        <!--
         <tr name="John Smith" email="johnsmith@gmail.com" level="Freshman">
             <td>John Smith</td>
             <td>johnsmith@gmail.com</td>
             <td>Freshman</td>
             <td><input type="button" value="Edit" onclick="editRow(this)"/></td>
             <td><input type="button" value="Delete" onclick="deleteRow(this)"/></td>
-          </tr>
+          </tr> -->
     </table>
 </div>
 <script src="studenttable.js"></script>
