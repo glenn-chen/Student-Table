@@ -68,12 +68,10 @@ function editRow(button) {
 function onNameChange(input) {
     var row = input.parentNode.parentNode.parentNode;
     row.tempname = input.value;
-    if (validateName(input.value)) {
+    if (validateName(input.value))
         input.setCustomValidity('');
-    }
-    else {
+    else
         input.setCustomValidity('invalid name');
-    }
 }
 
 function onEmailChange(input) {
@@ -88,9 +86,8 @@ function onLevelChange(select) {
 
 function saveRow(button) {
     var row = button.parentNode.parentNode;
-    if (!validateName(row.tempname) || !validateEmail(row.tempemail)) {
+    if (!validateName(row.tempname) || !validateEmail(row.tempemail))
         return;
-    }
     row.name = row.tempname;
     row.email = row.tempemail;
     row.level = row.templevel;
@@ -105,6 +102,9 @@ function saveRow(button) {
 
 function cancelEdit(button) {
     var row = button.parentNode.parentNode;
+    row.tempname = row.name;
+    row.tempemail = row.email;
+    row.templevel = row.level;
     row.cells[0].innerHTML = row.name;
     row.cells[1].innerHTML = row.email;
     row.cells[2].innerHTML = row.level;
@@ -114,12 +114,10 @@ function cancelEdit(button) {
 
 function validateNewStudent(nameForm, emailForm) {
     if (!validateName(nameForm.value) || !validateEmail(emailForm.value)) {
-        if (!validateName(nameForm.value)) {
+        if (!validateName(nameForm.value))
             nameWarning.hidden = false;
-        }
-        if (!validateEmail(emailForm.value)) {
+        if (!validateEmail(emailForm.value))
             emailWarning.hidden = false;
-        }
         return false;
     }
     return true;
