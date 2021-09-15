@@ -1,5 +1,3 @@
-var numRows = 1;
-
 function addRow() {
     var studentTable = document.getElementById("studentTable");
     var nameForm = document.getElementById("nameForm");
@@ -12,10 +10,7 @@ function addRow() {
     if (!validateInputs(nameForm, emailForm))
         return;
 
-    numRows++;
-
     var row = studentTable.insertRow(-1);
-    row.id = numRows;
 
     var nameCell = row.insertCell(0);
     nameCell.innerHTML = nameForm.value;
@@ -41,15 +36,14 @@ function addRow() {
 function deleteRow(button) {
     var row = button.parentNode.parentNode;
     row.parentNode.removeChild(row);
-    // do not decrement numRows
 }
 
 function editRow(button) {
     var row = button.parentNode.parentNode;
     // Name
-    row.cells[0].innerHTML = "<fieldset><input value='"+row.name+"' onchange='onNameChange(this)'></fieldset>";
+    row.cells[0].innerHTML = "<fieldset><input value='"+row.name+"' onchange='onNameChange(this)' required></fieldset>";
     // Email
-    row.cells[1].innerHTML = "<fieldset><input value='"+row.email+"' onchange='onEmailChange(this)'></fieldset>";
+    row.cells[1].innerHTML = "<fieldset><input value='"+row.email+"' onchange='onEmailChange(this)' required type='email'></fieldset>";
     // Level
     row.cells[2].innerHTML = "<select value='"+row.level+"' onchange='onLevelChange(this)'>"
         + (row.level === 'Freshman' ? "<option selected" : "<option")
@@ -63,33 +57,54 @@ function editRow(button) {
       + "</select>";
     // Edit Button Column
     row.cells[3].innerHTML = "<input type='button' value='Save' onclick='saveRow(this)' />";
+
+    // Change delete button to cancel button
+    row.cells[4].innerHTML = "<input type='button' value='Cancel' onclick='cancelEdit(this)' />";
 }
 function onNameChange(input) {
     var row = input.parentNode.parentNode.parentNode;
-    row.name = input.value;
+    if (validateName(input.value)) {
+        row.tempname = input.value;
+        input.setCustomValidity('');
+    }
+    else {
+        input.setCustomValidity('invalid name');
+    }
 }
 
 function onEmailChange(input) {
     var row = input.parentNode.parentNode.parentNode;
-    row.email = input.value;
+    if (validateEmail(input.value)) {
+        row.tempemail = input.value;
+    }
 }
 
 function onLevelChange(select) {
     var row = select.parentNode.parentNode;
-    row.level = select.value;
+    row.templevel = select.value;
 }
 
 function saveRow(button) {
     var row = button.parentNode.parentNode;
+    row.name = row.tempname;
+    row.email = row.tempemail;
+    row.level = row.templevel;
     row.cells[0].innerHTML = row.name;
-
     row.cells[1].innerHTML = row.email;
-
     row.cells[2].innerHTML = row.level;//document.getElementById("levelForm-" + row.id).value;
-
     // Edit Button
     row.cells[3].innerHTML = "<input type='button' value='Edit' onclick='editRow(this)' />";
+    row.cells[4].innerHTML = "<input type='button' value='Delete' onclick='deleteRow(this)' />";
     
+}
+
+function cancelEdit(button) {
+    var row = button.parentNode.parentNode;
+    row.cells[0].innerHTML = row.name;
+    row.cells[1].innerHTML = row.email;
+    row.cells[2].innerHTML = row.level;
+    row.cells[3].innerHTML = "<input type='button' value='Edit' onclick='editRow(this)' />";
+    row.cells[4].innerHTML = "<input type='button' value='Delete' onclick='deleteRow(this)' />";
 }
 
 function validateInputs(nameForm, emailForm) {

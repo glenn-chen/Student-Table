@@ -21,3 +21,7 @@ fieldset {
 input {
     max-width: 200px;
 }
+
+input:invalid {
+    background-color: #ffdddd;
+  }
